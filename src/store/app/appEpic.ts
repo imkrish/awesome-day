@@ -113,7 +113,7 @@ export const appEpic = (action$: ActionsObservable <any>, state: Store <IRootSta
             .switchMap(({ response }) => {
               return merge(
                 of(finishLoadingQuote()),
-                of(setQuote(response))
+                of(setQuote(response.quote))
               )
             })
         )

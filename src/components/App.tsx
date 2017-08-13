@@ -5,11 +5,16 @@ import { HelloContainer } from '../containers/HelloContainer'
 import { Paper } from 'material-ui'
 import { WelcomeText } from './WelcomeText'
 import { DateTime } from './DateTime'
-import { Tabs, Tab } from 'material-ui/Tabs'
-import { Route } from 'react-router'
-import { QuoteContainer } from '../containers/QuoteContainer'
 
-export const App = () => {
+import { Route, Switch } from 'react-router'
+import { QuoteContainer } from '../containers/QuoteContainer'
+import { AppTabs } from './AppTabs'
+
+
+export const App = (props: any) => {
+
+  const { pathname } = props.location
+
   return (
     <div
       style={{
@@ -18,14 +23,10 @@ export const App = () => {
       }}
     >
       <Header />
-      <Tabs>
-        <Tab
-          label="Location &amp; Weather"
-        />
-        <Tab
-          label="Random Quote"
-        />
-      </Tabs>
+
+      <AppTabs
+        pathname={pathname}
+      />      
 
       <Paper
         style={{
@@ -43,8 +44,10 @@ export const App = () => {
         
         {/* Router */}
         <div style={{ marginTop: 20 }}>
-          <Route exact={true} path="/" component={HelloContainer}/>
-          <Route exact={true} path="/quote" component={QuoteContainer}/>
+          <Switch>
+            <Route exact={true} path="/" component={HelloContainer}/>
+            <Route exact={true} path="/quote" component={QuoteContainer}/>
+          </Switch>
         </div>
       </Paper>
 

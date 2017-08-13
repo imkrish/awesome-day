@@ -18,13 +18,13 @@ export class Quote extends React.Component<IQuoteProps, {}> {
 
   render () {
     const { loadingQuote, quote } = this.props
-    
+  
     return (
       <Paper style={{ padding: 30, marginTop: 40 }}>
         <h2 style={{ fontSize: 20 }}>Random Quote</h2>
         {!loadingQuote && quote && (
           <div style={{ marginLeft: 10, marginTop: 30 }}>
-            <p>{quote}</p> 
+            <p>" {quote} "</p> 
           </div>
         )}
         {loadingQuote && (

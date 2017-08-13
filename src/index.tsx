@@ -1,13 +1,13 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
-import { App } from './components/App'
 import { Provider } from 'react-redux'
 import { configureStore } from './store/configureStore'
 import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'react-router-redux'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import * as reactTapEventPlugin from 'react-tap-event-plugin'
+import { AppContainer } from './containers/AppContainer'
 
 // RxJS
 import 'rxjs/add/operator/timeout'
@@ -37,7 +37,7 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={muiTheme}>
       <ConnectedRouter history={history}>
-        <App />
+        <AppContainer /> 
       </ConnectedRouter>
     </MuiThemeProvider>
   </Provider>,

@@ -4,13 +4,18 @@ import { primaryColor } from '../index'
 
 export class DateTime extends React.Component<{}, {}> {
   dateTimeP: HTMLParagraphElement
+  timerId: any
 
   componentWillMount() {
     this.setDateTime()
-    setInterval(
+    this.timerId = setInterval(
       this.setDateTime, 
       1000
     )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId)
   }
 
   setDateTime = () => {
