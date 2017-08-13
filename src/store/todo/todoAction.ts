@@ -1,8 +1,8 @@
 import { ITodo } from '../../interfaces/ITodo'
 export const ADD_TODO = 'ADD_TODO'
 export const REMOVE_TODO = 'REMOVE_TODO'
-export const DONE_TODO = 'DONE_TODO'
-export const UNDONE_TODO = 'UNDONE_TODO'
+export const TOGGLE_DONE_TODO = 'TOGGLE_DONE_TODO'
+export const TOGGLE_DISPLAY_ALL = 'TOGGLE_DISPLAY_ALL'
 
 export const addTodo = (todo: ITodo) => ({
   type: ADD_TODO,
@@ -14,12 +14,11 @@ export const removeTodo = (todo: ITodo) => ({
   payload: todo
 })
 
-export const doneTodo = (todo: ITodo) => ({
-  type: DONE_TODO,
+export const toggleDoneTodo = (todo: ITodo) => ({
+  type: TOGGLE_DONE_TODO,
   payload: todo
 })
 
-export const undoneTodo = (todo: ITodo) => ({
-  type: UNDONE_TODO,
-  payload: todo
+export const toggleDisplayAll = () => ({
+  type: TOGGLE_DISPLAY_ALL
 })

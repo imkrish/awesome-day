@@ -1,43 +1,45 @@
 import * as React from 'react'
-import { Paper, TextField, FloatingActionButton } from 'material-ui'
+import { Paper, TextField, FloatingActionButton, Divider, Toggle } from 'material-ui'
 import { ITodo } from '../interfaces/ITodo'
-import { List, ListItem } from 'material-ui/List'
+import { ListItem } from 'material-ui/List'
 import { v4 } from 'uuid'
 import { ActionNoteAdd } from 'material-ui/svg-icons'
 import { IAction } from '../store/interfaces/IAction'
+import { primaryColor } from '../index'
 
 interface ITodoProps {
   todoList: ITodo[]
+  displayAll: boolean
   addTodo: (todo: ITodo) => IAction
   removeTodo: (todo: ITodo) => IAction
-  doneTodo: (todo: ITodo) => IAction
-  undoneTodo: (todo: ITodo) => IAction
+  toggleDoneTodo: (todo: ITodo) => IAction
+  toggleDisplayAll: () => IAction
 }
 
 export const Todo = (props: ITodoProps) => {
   let todoTF: TextField | null
 
-  const { todoList, addTodo, doneTodo, undoneTodo } = props
+  const { todoList, addTodo, toggleDoneTodo, toggleDisplayAll, displayAll } = props
 
   const renderTodoList = () => {
-    return todoList.map(
-      todo => (
-        <ListItem
-          key={todo.id}
-          primaryText={todo.task}
-          secondaryText={todo.done ? 'Done' : 'Todo'}
-          onTouchTap={onSwitchDone.bind(undefined, todo)}
-        />
-      )
+    return todoList
+      .filter(todo => displayAll || !todo.done)
+      .map(
+        todo => (
+          <div key={todo.id}>
+            <ListItem
+              primaryText={todo.task}
+              secondaryText={todo.done ? 'Done' : 'Todo'}
+              onTouchTap={onSwitchDone.bind(undefined, todo)}
+            />
+            <Divider />
+          </div> 
+        )
     )
   }
 
   const onSwitchDone = (todo: ITodo) => {
-    if (todo.done) {
-      undoneTodo(todo)
-    } else {
-      doneTodo(todo)
-    }
+    toggleDoneTodo(todo)
   }
 
   const onAddTodo = () => {
@@ -85,10 +87,18 @@ export const Todo = (props: ITodoProps) => {
         </div>
         
       </div>
+      <div style={{ maxWidth: 150, marginTop: 20 }}>
+        <Toggle
+          label="Display All"
+          labelStyle={{ color: primaryColor }}
+          defaultToggled={false}
+          onToggle={toggleDisplayAll}
+        />
+      </div>
       {todoList.length > 0 && (
-        <List style={{ marginTop: 10 }}>
+        <Paper zDepth={1} style={{ marginTop: 20 }}>
           {renderTodoList()}
-        </List>
+        </Paper>
       )}
     </Paper>
   )

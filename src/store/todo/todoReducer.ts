@@ -1,14 +1,16 @@
 import { ITodoState } from '../interfaces/ITodoState'
 import { lensProp, set } from 'ramda'
 import { IAction } from '../interfaces/IAction'
-import { ADD_TODO, DONE_TODO, REMOVE_TODO, UNDONE_TODO } from './todoAction'
+import { ADD_TODO, REMOVE_TODO, TOGGLE_DISPLAY_ALL, TOGGLE_DONE_TODO } from './todoAction'
 import { TodoUtil } from '../../utils/TodoUtil'
 
 const initState: ITodoState = {
-  todoList: []
+  todoList: [],
+  displayAll: false
 }
 
-export const todoListLens = lensProp('todoList')
+const todoListLens = lensProp('todoList')
+const displayAllLens = lensProp('displayAll')
 
 export const todoReducer = (state = initState, action: IAction) => {
   const { type, payload } = action
@@ -27,17 +29,17 @@ export const todoReducer = (state = initState, action: IAction) => {
         todoList.filter(todo => todo.id !== payload.id)
       )
 
-    case DONE_TODO:
+    case TOGGLE_DONE_TODO:
       return set(
         todoListLens,
-        TodoUtil.getChangedTodoList(todoList, payload, true),
+        TodoUtil.getChangedTodoList(todoList, payload, !payload.done),
         state
       )
 
-    case UNDONE_TODO:
+    case TOGGLE_DISPLAY_ALL:
       return set(
-        todoListLens,
-        TodoUtil.getChangedTodoList(todoList, payload, false),
+        displayAllLens,
+        !state.displayAll,
         state
       )
 

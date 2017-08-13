@@ -6,6 +6,7 @@ import { IRootState } from './interfaces/IRootState'
 import { History } from 'history'
 import { rootEpic } from './rootEpic'
 import { rootReducer } from './rootReducer'
+import { v4 } from 'uuid'
 
 export const configureStore = (history: History) => {
 
@@ -17,6 +18,17 @@ export const configureStore = (history: History) => {
   
   const store = createStore(
     rootReducer,
+    {
+      todo: {
+        todoList: [
+          {
+            id: v4(),
+            task: 'Hello world',
+            done: true
+          }
+        ]
+      }
+    },
     composeWithDevTools(
       applyMiddleware(
         routerMiddleWare,
