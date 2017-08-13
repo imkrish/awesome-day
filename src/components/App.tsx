@@ -10,7 +10,6 @@ import { Route, Switch } from 'react-router'
 import { QuoteContainer } from '../containers/QuoteContainer'
 import { AppTabs } from './AppTabs'
 
-
 export const App = (props: any) => {
 
   const { pathname } = props.location

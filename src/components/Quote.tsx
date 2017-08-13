@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Paper, CircularProgress } from 'material-ui'
+import { Paper, CircularProgress, FloatingActionButton } from 'material-ui'
+import { NavigationRefresh } from 'material-ui/svg-icons'
 
 interface IQuoteProps {
   // State
@@ -7,7 +8,7 @@ interface IQuoteProps {
   quote: string
 
   // Action
-  fetchQuote: Function
+  fetchQuote: () => void
 }
 
 export class Quote extends React.Component<IQuoteProps, {}> {
@@ -17,11 +18,16 @@ export class Quote extends React.Component<IQuoteProps, {}> {
   }
 
   render () {
-    const { loadingQuote, quote } = this.props
+    const { fetchQuote, loadingQuote, quote } = this.props
   
     return (
       <Paper style={{ padding: 30, marginTop: 40 }}>
-        <h2 style={{ fontSize: 20 }}>Random Quote</h2>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <h2 style={{ fontSize: 20, marginRight: 20 }}>Random Quote</h2>
+          <FloatingActionButton mini={true} disabled={!quote || loadingQuote} onTouchTap={fetchQuote}>
+            <NavigationRefresh />
+          </FloatingActionButton>
+        </div>
         {!loadingQuote && quote && (
           <div style={{ marginLeft: 10, marginTop: 30 }}>
             <p>" {quote} "</p> 

@@ -29,7 +29,11 @@ export const CurrentWeather = (props: ICurrentWeatherProps) => {
       <div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <h2 style={{ fontSize: 20, marginRight: 20 }}>Current Weather</h2>
-          <FloatingActionButton mini={true} disabled={!locationData} onTouchTap={onRefreshWeatherData}>
+          <FloatingActionButton
+            mini={true}
+            disabled={!locationData || loadingWeather}
+            onTouchTap={onRefreshWeatherData}
+          >
             <NavigationRefresh />
           </FloatingActionButton>
         </div>
