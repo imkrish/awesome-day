@@ -2,6 +2,7 @@ import * as React from 'react'
 import { CurrentLocation } from './CurrentLocation'
 import { CurrentWeather } from './CurrentWeather'
 import { ILocation } from '../interfaces/ILocation'
+import { IAction } from '../store/interfaces/IAction'
 
 interface IHelloProps {
   // State
@@ -12,8 +13,8 @@ interface IHelloProps {
   lastWeatherUpdated: number
 
   // Action
-  fetchLocationData: () => void
-  fetchWeatherData: (location: ILocation) => void
+  fetchLocationData: () => IAction
+  fetchWeatherData: (location: ILocation) => IAction
 }
 
 export class Hello extends React.Component<IHelloProps, {}> {

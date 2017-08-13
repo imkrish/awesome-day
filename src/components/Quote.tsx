@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Paper, CircularProgress, FloatingActionButton } from 'material-ui'
 import { NavigationRefresh } from 'material-ui/svg-icons'
+import { IAction } from '../store/interfaces/IAction'
 
 interface IQuoteProps {
   // State
@@ -8,7 +9,7 @@ interface IQuoteProps {
   quote: string
 
   // Action
-  fetchQuote: () => void
+  fetchQuote: () => IAction
 }
 
 export class Quote extends React.Component<IQuoteProps, {}> {

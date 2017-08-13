@@ -9,6 +9,7 @@ import { DateTime } from './DateTime'
 import { Route, Switch } from 'react-router'
 import { QuoteContainer } from '../containers/QuoteContainer'
 import { AppTabs } from './AppTabs'
+import { TodoContainer } from '../containers/TodoContainer'
 
 export const App = (props: any) => {
 
@@ -45,7 +46,8 @@ export const App = (props: any) => {
         <div style={{ marginTop: 20 }}>
           <Switch>
             <Route exact={true} path="/" component={HelloContainer}/>
-            <Route exact={true} path="/quote-todos" component={QuoteContainer}/>
+            <Route exact={true} path="/quote" component={QuoteContainer}/>
+            <Route exact={true} path="/todos" component={TodoContainer}/>
           </Switch>
         </div>
       </Paper>
