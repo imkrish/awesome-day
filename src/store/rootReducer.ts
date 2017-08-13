@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import { appReducer } from './app/appReducer'
+import { weatherReducer } from './weather/weatherReducer'
+import { locationReducer } from './location/locationReducer'
+import { quoteReducer } from './quote/quoteReducer'
 
 export const rootReducer  = combineReducers({
-  app: appReducer,
+  weather: weatherReducer,
+  location: locationReducer,
+  quote: quoteReducer,
   router: routerReducer
 })

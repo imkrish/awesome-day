@@ -1,15 +1,16 @@
 import { Hello } from '../components/Hello'
 import { connect } from 'react-redux'
 import { IRootState } from '../store/interfaces/IRootState'
-import { fetchLocationData, fetchWeatherData } from '../store/app/appEpic'
+import { fetchLocationData } from '../store/location/locationEpic'
+import { fetchWeatherData } from '../store/weather/weatherEpic'
 
 export const HelloContainer = connect(
   (state: IRootState) => ({
-    loadingLocation: state.app.loadingLocation,
-    locationData: state.app.locationData,
-    loadingWeather: state.app.loadingWeather,
-    weatherData: state.app.weatherData,
-    lastWeatherUpdated: state.app.lastWeatherUpdated
+    loadingLocation: state.location.loadingLocation,
+    locationData: state.location.locationData,
+    loadingWeather: state.weather.loadingWeather,
+    weatherData: state.weather.weatherData,
+    lastWeatherUpdated: state.weather.lastWeatherUpdated
   }),
   {
     fetchLocationData, fetchWeatherData

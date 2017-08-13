@@ -1,6 +1,10 @@
 import { combineEpics } from 'redux-observable'
-import { appEpic } from './app/appEpic'
+import { locationEpic } from './location/locationEpic'
+import { weatherEpic } from './weather/weatherEpic'
+import { quoteEpic } from './quote/quoteEpic'
 
 export const rootEpic = combineEpics(
-  appEpic
+  locationEpic,
+  weatherEpic,
+  quoteEpic
 )
