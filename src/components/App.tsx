@@ -5,7 +5,6 @@ import { HelloContainer } from '../containers/HelloContainer'
 import { Paper } from 'material-ui'
 import { WelcomeText } from './WelcomeText'
 import { DateTime } from './DateTime'
-
 import { Route, Switch } from 'react-router'
 import { QuoteContainer } from '../containers/QuoteContainer'
 import { AppTabs } from './AppTabs'

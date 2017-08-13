@@ -8,7 +8,5 @@ export const QuoteContainer = connect(
     loadingQuote: state.quote.loadingQuote,
     quote: state.quote.quote
   }),
-  {
-    fetchQuote
-  }
+  { fetchQuote }
 )(Quote)

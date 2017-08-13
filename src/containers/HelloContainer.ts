@@ -12,7 +12,5 @@ export const HelloContainer = connect(
     weatherData: state.weather.weatherData,
     lastWeatherUpdated: state.weather.lastWeatherUpdated
   }),
-  {
-    fetchLocationData, fetchWeatherData
-  }
+  { fetchLocationData, fetchWeatherData }
 )(Hello)
