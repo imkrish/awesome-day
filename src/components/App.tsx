@@ -45,7 +45,7 @@ export const App = (props: any) => {
         <div style={{ marginTop: 20 }}>
           <Switch>
             <Route exact={true} path="/" component={HelloContainer}/>
-            <Route exact={true} path="/quote" component={QuoteContainer}/>
+            <Route exact={true} path="/quote-todos" component={QuoteContainer}/>
           </Switch>
         </div>
       </Paper>

@@ -1,7 +1,7 @@
-import { IWeatherState } from '../interfaces/IWeatherLocation'
 import { lensProp, set } from 'ramda'
 import { IAction } from '../interfaces/IAction'
 import { SET_WEATHER_DATA, LOADING_WEATHER, FINISH_LOADING_WEATHER, SET_LAST_WEATHER_UPDATED } from './weatherAction'
+import { IWeatherState } from '../interfaces/IWeatherState'
 
 export const initState: IWeatherState = {
   loadingWeather: false,

@@ -10,7 +10,7 @@ export const AppTabs = (props: IAppTabsProps) => {
   const { pathname } = props
 
   const shouldRender = () => {
-    return pathname === '/' || pathname === '/quote'
+    return pathname === '/' || pathname === '/quote-todos'
   }
 
   return (
@@ -24,8 +24,8 @@ export const AppTabs = (props: IAppTabsProps) => {
             label="Location &amp; Weather"
           />
           <Tab
-            onClick={() => sPush('/quote')}
-            label="Random Quote"
+            onClick={() => sPush('/quote-todos')}
+            label="Quote &amp; Todos"
           />
         </Tabs>
       )}

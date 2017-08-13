@@ -16,7 +16,7 @@ export const Footer = () => {
       }}
       rounded={false}
     >
-      <p>Allied Telesis</p>
+      <p>Thanks for reviewing</p>
       <p>Keerati Limkulphong</p>
     </Paper> 
   )

@@ -24,7 +24,7 @@ export class Quote extends React.Component<IQuoteProps, {}> {
       <Paper style={{ padding: 30, marginTop: 40 }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <h2 style={{ fontSize: 20, marginRight: 20 }}>Random Quote</h2>
-          <FloatingActionButton mini={true} disabled={!quote || loadingQuote} onTouchTap={fetchQuote}>
+          <FloatingActionButton mini={true} disabled={loadingQuote} onTouchTap={fetchQuote}>
             <NavigationRefresh />
           </FloatingActionButton>
         </div>
