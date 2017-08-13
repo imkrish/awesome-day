@@ -37,7 +37,7 @@ export const AppTabs = (props: IAppTabsProps) => {
         >
           <Tab
             onClick={() => sPush('/')}
-            label="Location &amp; Weather"
+            label="Hello"
           />
           <Tab
             onClick={() => sPush('/quote')}

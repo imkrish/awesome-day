@@ -30,12 +30,12 @@ export class Quote extends React.Component<IQuoteProps, {}> {
           </FloatingActionButton>
         </div>
         {!loadingQuote && quote && (
-          <div style={{ marginLeft: 10, marginTop: 30 }}>
+          <div style={{ marginTop: 30 }}>
             <p>" {quote} "</p> 
           </div>
         )}
         {loadingQuote && (
-          <CircularProgress style={{ marginLeft: 10, marginTop: 30 }} size={50} thickness={5} />
+          <CircularProgress style={{ marginLeft: 20, marginTop: 30 }} size={50} thickness={5} />
         )}
       </Paper>
     )

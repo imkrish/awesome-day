@@ -28,7 +28,12 @@ export const CurrentWeather = (props: ICurrentWeatherProps) => {
     <Paper style={{ padding: 30 }}>
       <div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <h2 style={{ fontSize: 20, marginRight: 20 }}>Current Weather</h2>
+          <div>
+            <h2 style={{ fontSize: 20, marginRight: 20 }}>Current Weather</h2>
+            {lastWeatherUpdated && (
+              <p style={{ fontSize: 14 }}>Last Updated: {new Date(lastWeatherUpdated).toLocaleTimeString()}</p>
+            )}
+          </div>
           <FloatingActionButton
             mini={true}
             disabled={!locationData || loadingWeather}
@@ -37,13 +42,10 @@ export const CurrentWeather = (props: ICurrentWeatherProps) => {
             <NavigationRefresh />
           </FloatingActionButton>
         </div>
-        {lastWeatherUpdated && (
-          <p style={{ fontSize: 14 }}>Last Updated: {new Date(lastWeatherUpdated).toLocaleTimeString()}</p>
-        )}
       </div>
       
       {!loadingWeather && weatherData && (
-        <div style={{ marginLeft: 10, marginTop: 30 }}>
+        <div style={{ marginTop: 30 }}>
           <div style={{ marginTop: 10 }}>
             {getTitleValueText('Temp', weatherData.main.temp, '°C')}
           </div>
@@ -59,7 +61,7 @@ export const CurrentWeather = (props: ICurrentWeatherProps) => {
         </div>
       )}
       {loadingWeather && (
-        <CircularProgress style={{ marginLeft: 10, marginTop: 30 }} size={50} thickness={5} />
+        <CircularProgress style={{ marginLeft: 20, marginTop: 30 }} size={50} thickness={5} />
       )}
     </Paper>
   )

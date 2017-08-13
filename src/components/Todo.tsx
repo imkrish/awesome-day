@@ -42,9 +42,16 @@ export const Todo = (props: ITodoProps) => {
 
   const onAddTodo = () => {
     if (todoTF) {
+      const task = todoTF.getValue()
+
+      if (task.length === 0) {
+        alert('Please input a task.')
+        return
+      }
+
       const todo: ITodo = {
         id: v4(),
-        task: todoTF.getValue(),
+        task,
         done: false
       }
       addTodo(todo)
@@ -61,14 +68,14 @@ export const Todo = (props: ITodoProps) => {
   return (
     <Paper style={{ padding: 30, marginTop: 40 }}>
       <h2 style={{ fontSize: 20 }}>Todo List</h2>
-      <div style={{ marginTop: 30, display: 'flex' }}>
+      <div style={{ marginTop: 10, display: 'flex', alignItems: 'flex-end' }}>
         <TextField
           ref={elem => todoTF = elem}
           floatingLabelText="Add a new task"
           floatingLabelFixed={true}
           onKeyPress={onEnterToAddTodo}
         />
-        <div style={{ marginLeft: 15, alignSelf: 'center' }}>
+        <div style={{ marginLeft: 15 }}>
           <FloatingActionButton
             mini={true}
             onTouchTap={onAddTodo}

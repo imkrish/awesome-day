@@ -30,16 +30,16 @@ export const App = (props: any) => {
 
       <Paper
         style={{
-          padding: '30px 15px 30px 15px'
+          padding: '30px 30px 30px 30px'
         }}
         rounded={false}
       >
-        {/* Current Date Time */}
-        <DateTime />
-
         {/* Welcome Text */}
+        <WelcomeText />
+        
+        {/* Current Date Time */}
         <div style={{ marginTop: 20 }}>
-          <WelcomeText />
+          <DateTime />
         </div>
         
         {/* Router */}
