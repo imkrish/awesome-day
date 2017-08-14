@@ -3,9 +3,10 @@ import { Paper, TextField, FloatingActionButton, Divider, Toggle } from 'materia
 import { ITodo } from '../interfaces/ITodo'
 import { ListItem } from 'material-ui/List'
 import { v4 } from 'uuid'
-import { ActionNoteAdd } from 'material-ui/svg-icons'
+import { ActionNoteAdd, ActionDone, ActionDonutLarge, ActionDelete } from 'material-ui/svg-icons'
 import { IAction } from '../store/interfaces/IAction'
-import { primaryColor } from '../index'
+import { primaryColor, accentColor } from '../index'
+import { green500, red500 } from 'material-ui/styles/colors'
 
 interface ITodoProps {
   todoList: ITodo[]
@@ -19,7 +20,7 @@ interface ITodoProps {
 export const Todo = (props: ITodoProps) => {
   let todoTF: TextField | null
 
-  const { todoList, addTodo, toggleDoneTodo, toggleDisplayAll, displayAll } = props
+  const { todoList, addTodo, toggleDoneTodo, toggleDisplayAll, displayAll, removeTodo } = props
 
   const renderTodoList = () => {
     return todoList
@@ -27,11 +28,25 @@ export const Todo = (props: ITodoProps) => {
       .map(
         todo => (
           <div key={todo.id}>
-            <ListItem
-              primaryText={todo.task}
-              secondaryText={todo.done ? 'Done' : 'Todo'}
-              onTouchTap={onSwitchDone.bind(undefined, todo)}
-            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <ActionDelete
+                onClick={removeTodo.bind(null, todo)}
+                color={red500} 
+                style={{
+                  cursor: 'pointer',
+                  marginRight: 15
+                }}
+              />
+              <div style={{ flex: 1 }}>
+                <ListItem
+                  innerDivStyle={{ wordBreak: 'break-all' }}
+                  primaryText={todo.task}
+                  secondaryText={todo.done ? <ActionDone color={green500} /> : <ActionDonutLarge color={accentColor} />}
+                  onTouchTap={onSwitchDone.bind(undefined, todo)}
+                />
+              </div>
+              
+            </div>
             <Divider />
           </div> 
         )
@@ -67,6 +82,8 @@ export const Todo = (props: ITodoProps) => {
     }
   }
 
+  console.log(displayAll)
+
   return (
     <Paper style={{ padding: 30, marginTop: 40 }}>
       <h2 style={{ fontSize: 20 }}>Todo List</h2>
@@ -91,14 +108,14 @@ export const Todo = (props: ITodoProps) => {
         <Toggle
           label="Display All"
           labelStyle={{ color: primaryColor }}
-          defaultToggled={false}
+          defaultToggled={displayAll}
           onToggle={toggleDisplayAll}
         />
       </div>
       {todoList.length > 0 && (
-        <Paper zDepth={1} style={{ marginTop: 20 }}>
+        <div>
           {renderTodoList()}
-        </Paper>
+        </div>
       )}
     </Paper>
   )

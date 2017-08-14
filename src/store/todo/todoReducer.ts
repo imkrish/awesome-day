@@ -6,7 +6,7 @@ import { TodoUtil } from '../../utils/TodoUtil'
 
 const initState: ITodoState = {
   todoList: [],
-  displayAll: false
+  displayAll: true
 }
 
 const todoListLens = lensProp('todoList')
@@ -26,7 +26,8 @@ export const todoReducer = (state = initState, action: IAction) => {
     case REMOVE_TODO:
       return set(
         todoListLens,
-        todoList.filter(todo => todo.id !== payload.id)
+        todoList.filter(todo => todo.id !== payload.id),
+        state
       )
 
     case TOGGLE_DONE_TODO:

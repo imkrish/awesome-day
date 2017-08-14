@@ -20,6 +20,7 @@ export const configureStore = (history: History) => {
     rootReducer,
     {
       todo: {
+        displayAll: true,
         todoList: [
           {
             id: v4(),
