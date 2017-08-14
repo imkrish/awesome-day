@@ -82,8 +82,6 @@ export const Todo = (props: ITodoProps) => {
     }
   }
 
-  console.log(displayAll)
-
   return (
     <Paper style={{ padding: 30, marginTop: 40 }}>
       <h2 style={{ fontSize: 20 }}>Todo List</h2>
