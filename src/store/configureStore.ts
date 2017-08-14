@@ -6,7 +6,6 @@ import { IRootState } from './interfaces/IRootState'
 import { History } from 'history'
 import { rootEpic } from './rootEpic'
 import { rootReducer } from './rootReducer'
-import { v4 } from 'uuid'
 import { LocalStorageUtil } from '../utils/LocalStorageUtil'
 
 export const configureStore = (history: History) => {
