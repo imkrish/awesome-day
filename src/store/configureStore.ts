@@ -7,6 +7,7 @@ import { History } from 'history'
 import { rootEpic } from './rootEpic'
 import { rootReducer } from './rootReducer'
 import { v4 } from 'uuid'
+import { LocalStorageUtil } from '../utils/LocalStorageUtil'
 
 export const configureStore = (history: History) => {
 
@@ -15,21 +16,12 @@ export const configureStore = (history: History) => {
   
   // Config epic middleware
   const epicMiddleWare = createEpicMiddleware(rootEpic)
+
+  const persistedState = LocalStorageUtil.loadState()
   
-  const store = createStore(
+  const store: Store<IRootState> = createStore(
     rootReducer,
-    {
-      todo: {
-        displayAll: true,
-        todoList: [
-          {
-            id: v4(),
-            task: 'Hello world',
-            done: true
-          }
-        ]
-      }
-    },
+    persistedState,
     composeWithDevTools(
       applyMiddleware(
         routerMiddleWare,
@@ -37,6 +29,12 @@ export const configureStore = (history: History) => {
       )
     )
   )
+
+  store.subscribe(() => {
+    LocalStorageUtil.saveState(
+      LocalStorageUtil.getStateToSave(store.getState())
+    )
+  })
 
   return <Store<IRootState>> store
 }
